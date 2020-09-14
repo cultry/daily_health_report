@@ -10,7 +10,7 @@
 ```php+HTML
 https://ehallapp.nju.edu.cn/xgfw/sys/yqfxmrjkdkappnju/apply/saveApplyInfos.do?WID={步骤2中获取到的WID}&CURR_LOCATION={打卡地址，例如：中国江苏省南京市栖霞区仙林大道}&IS_TWZC=1&IS_HAS_JKQK=1&JRSKMYS=1&JZRJRSKMYS=1 
 
-#理论上只需要修改WID以及地址，注意要去掉地址中的花括号
+#理论上只需要修改WID以及打卡地址，注意要去掉地址中的花括号
 ```
 
 ## 免责声明
