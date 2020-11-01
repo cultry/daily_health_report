@@ -1,18 +1,67 @@
-# 某双一流大学健康打卡捷径
+# 自动每日健康打卡程序
 
-## 打卡教程
+近日对该高校的统一身份认证协议进行了解析，并开发出了基于python的自动健康打卡程序，使用方式如下
 
-1. 访问地址 [获取打卡列表](http://ehallapp.nju.edu.cn/xgfw/sys/yqfxmrjkdkappnju/apply/getApplyInfoList.do)，返回的json中<code>data</code>字段为相应的打卡列表
-2. 根据日期找到待打卡的项目对应的<code>WID</code>，未打卡的项中会带有<code>"TBZT": "0"</code>的项
-3. 根据下面的规则构造打卡请求地址
-4. 访问**步骤3**构造的地址得到成功的返回请求
+## 安装
 
-```php+HTML
-https://ehallapp.nju.edu.cn/xgfw/sys/yqfxmrjkdkappnju/apply/saveApplyInfos.do?WID={步骤2中获取到的WID}&CURR_LOCATION={打卡地址，例如：中国江苏省南京市栖霞区仙林大道}&IS_TWZC=1&IS_HAS_JKQK=1&JRSKMYS=1&JZRJRSKMYS=1 
+该项目依赖于一些python包，在使用前请务必保证这些包已经被正常安装
 
-#理论上只需要修改WID以及打卡地址，注意要去掉地址中的花括号
+```bash
+pip install -r requirements.txt
 ```
 
-## 免责声明
+## 使用
 
-该打卡方法仅供学习Web协议使用，请勿用于任何违规违法用途，造成任何后果与作者无关！
+### 直接传入用户名密码
+
+在bash中执行
+
+```bash
+python main.py --username=<username> --password=<password>
+```
+
+其中上面的<code>\<username\></code>处填写用户名（学号/工号），例如DZ20000001，其中的<code>\<password\></code>处填写统一身份认证平台的密码。
+
+### 通过文件传入密码
+
+新建passwd.txt文件，按照以下格式填入用户名和密码
+
+```bash
+username:password
+```
+
+保存好文件后在bash中执行
+
+```bash
+python main.py --file=/path/to/passwd.txt
+```
+
+例如在当前目录下
+
+```bash
+python main.py --file=./passwd.txt
+```
+
+### 添加任务计划
+
+#### linux
+
+在linux平台下，可以编辑<code>/etc/crontab</code>文件，并添加行
+
+```bash
+0 12 * * * <user> /path/to/your/python /path/to/main.py --file=/path/to/passwd.txt
+```
+
+#### 其他平台
+
+（待更新）
+
+## 承诺&&免责声明
+
+### 请放心使用
+
+该程序**不会访问**除了校园网以外的所有资源，**不会收集**任何与用户账号相关的信息，请各位用户放心使用，不放心的用户可以自行阅读程序源码。
+
+### 免责声明
+
+该程序仅为大家提供便利，如果因故离校或者出现任何健康状况请如实上报，因使用该程序导致的后果作者概不负责。
