@@ -49,7 +49,7 @@ python main.py --file=./passwd.txt
 在linux平台下，可以编辑<code>/etc/crontab</code>文件，并添加行
 
 ```bash
-0 12 * * * <user> /path/to/your/python /path/to/main.py --file=/path/to/passwd.txt
+0 22 * * * <user> /path/to/your/python /path/to/main.py --file=/path/to/passwd.txt
 ```
 
 #### 其他平台
