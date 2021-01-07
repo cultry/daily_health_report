@@ -28,4 +28,4 @@ def send(username='', password='', host='smtp.exmail.qq.com'):
 	    return (False, '邮件发送失败')
 
 if __name__ == '__main__':
-	send(username='zhengqc@lamda.nju.edu.cn', password='ZqcAnnyTerfect123')
+	send(username='example@mail.com', password='example')

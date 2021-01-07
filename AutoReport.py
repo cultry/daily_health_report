@@ -3,16 +3,13 @@ import json
 import re
 import js2py
 import time
-import syslog
-
 #disable the warnings
 import urllib3
 urllib3.disable_warnings()
+from log import log
 
 class AutoReport:
 	def __init__(self, username, raw_password, location='中国江苏省南京市栖霞区仙林大道'):
-		syslog.openlog('auto_daily_health_report')
-		
 		self.username = username
 		self.raw_password = raw_password
 		self.location = location
@@ -30,15 +27,6 @@ class AutoReport:
 			'rmShown': 1
 		}
 		self.cookies = requests.utils.cookiejar_from_dict({})
-
-	def log(self, msg, status=None):
-		msg = str(msg)
-		if status == True:
-			msg = '[Successful] ' + msg
-		if status == False:
-			msg = '[Failed] ' + msg
-		print(msg)
-		syslog.syslog(msg)
 
 	#update cookies from new response
 	def update_cookies(self, response):
@@ -122,14 +110,14 @@ class AutoReport:
 
 	def main(self):
 		status, msg = self.prepare_login_data()
-		self.log(msg, status=status)
+		log(msg, status=status)
 		if status:
 			status, msg = self.login()
-			self.log(msg, status=status)
+			log(msg, status=status)
 			if status:
 				status, msg = self.get_list()
-				self.log(msg, status=status)
+				log(msg, status=status)
 				if status:
 					status, msg = self.report()
-					self.log(msg, status=status)
+					log(msg, status=status)
 					return status, msg
