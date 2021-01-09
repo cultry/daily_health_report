@@ -95,6 +95,8 @@ class AutoReport:
 		return (True, 'Get report list successfully')
 
 	def report(self):
+		if self.report_list[0]['TBZT'] == '1':
+			return (False, 'Report finished')
 		WID = self.report_list[0]['WID']
 		report_url = 'https://ehallapp.nju.edu.cn/xgfw/sys/yqfxmrjkdkappnju/apply/saveApplyInfos.do?WID={}&CURR_LOCATION={}&IS_TWZC=1&IS_HAS_JKQK=1&JRSKMYS=1&JZRJRSKMYS=1'.format(WID, self.location)
 		report_res = requests.get(report_url, headers=self.headers, cookies=self.cookies, verify=False, allow_redirects=False)
