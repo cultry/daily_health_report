@@ -42,7 +42,7 @@ python main.py --file=/path/to/passwd.txt
 python main.py --file=./passwd.txt
 ```
 
-### 使用base64加密密码**（新功能）**
+### 使用base64加密密码
 
 如果你不想将密码明文直接传入程序，在运行参数中加上<code>--b64</code>，将password改为密码的base64密文即可，该参数对于统一身份认证平台的密码和邮件的密码一样生效。例如
 
@@ -56,7 +56,7 @@ python main.py --file=./passwd.txt --b64
 python main.py --username=<username> --password=<password> --b64
 ```
 
-### 邮件通知**（新功能）**
+### 邮件通知
 
 如果你希望在打卡成功后通过邮件通知，加上--mail_notify, --mail_user, --mail_pass, --mail_host四个参数，（经过测试对于拉姆达邮箱无需修改--mail_host参数，使用默认参数即可），例如
 
@@ -68,6 +68,10 @@ python main.py --username=<username> \
 --mail_user <example@xxxxx.xxx.edu.cn> \
 --mail_pass <your_email_password_base64>
 ```
+
+### 强制打卡（调试用）
+
+默认情况下如果打卡已经完成程序会取消打卡，如果添加<code>--force</code>参数则将覆盖上次打卡，并强制重新打卡。
 
 ### 添加任务计划
 
