@@ -6,7 +6,7 @@ from mail import send
 from time import sleep
 from log import log
 
-def main(username='', password='', file='', b64=False, mail_notify=False, mail_user='', mail_pass='', mail_host='smtp.exmail.qq.com', force=False, location='中国江苏省南京市栖霞区仙林大道'):
+def main(username='', password='', file='', b64=False, mail_notify=False, mail_user='', mail_pass='', mail_host='smtp.exmail.qq.com', force=False, location=''):
 	#load username and password
 	if file:
 		with open(file, 'r') as f:
